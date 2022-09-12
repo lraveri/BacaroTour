@@ -47,8 +47,6 @@ public class BacaroActivity extends AppCompatActivity {
 
         name = getIntent().getStringExtra("name");
 
-        Log.i("click", name + lat + lng);
-
         db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("Bacari").document(name);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -57,15 +55,13 @@ public class BacaroActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
-                        Log.i("click", "DocumentSnapshot data: " + document.getData());
                         bacaro = document.toObject(Bacaro.class);
-                        Log.i("click", bacaro.getName() + " " + bacaro.getImageUrl());
                         showContent(bacaro);
                     } else {
-                        Log.i("click", "No such document");
+                        Log.d(TAG, "No such document");
                     }
                 } else {
-                    Log.i("click", "get failed with ", task.getException());
+                    Log.d(TAG, "get failed with ", task.getException());
                 }
             }
         });
@@ -79,7 +75,6 @@ public class BacaroActivity extends AppCompatActivity {
         tvTitle.setText(bacaro.getName());
         tvDescription = findViewById(R.id.tvDescription);
         tvDescription.setText(bacaro.getDescription());
-        Log.i("click", bacaro.getName() + " " + bacaro.getDescription());
         tvFood = findViewById(R.id.tvFood);
         tvFood.setRating((float) bacaro.getAverageRate());
 

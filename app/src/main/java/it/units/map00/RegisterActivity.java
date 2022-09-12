@@ -192,6 +192,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean passwordValida(String password){
         String confermaPassword = mConfermaPassword.getText().toString();
-        return confermaPassword.equals(password) && password.length()>7;
+        return confermaPassword.equals(password) && password.length()>2;
     }
 }
