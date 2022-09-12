@@ -19,8 +19,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -33,7 +31,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.maps.DirectionsApiRequest;
@@ -47,6 +44,7 @@ import com.google.maps.model.TravelMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.units.map00.adapters.CustomInfoWindowAdapter;
 import it.units.map00.databinding.ActivityMapsBinding;
 import it.units.map00.model.Bacaro;
 
