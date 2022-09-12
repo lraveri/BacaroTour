@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         if(!(nomeUtente.length()>7)||!(nomeUtente.contains("@"))) {
             Toast.makeText(this, "email non valida", Toast.LENGTH_LONG).show();
             return;
-        }else if(!(password.length()>7)){
+        }else if(!(password.length()>3)){
             Toast.makeText(this, "password non valida", Toast.LENGTH_LONG).show();
             return;
 

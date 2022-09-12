@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         String extra = b.getString("msg");
         mAuth = FirebaseAuth.getInstance();
-        setTitle(mAuth.getCurrentUser().getDisplayName());
+        setTitle("Ciao, " + mAuth.getCurrentUser().getDisplayName());
 
 
         // Presentare dati all'utente attraverso un Toast
@@ -134,54 +134,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void showList(View view) {
 
-
-
-
-        /*
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DocumentReference dataRef = db.collection("Bacari").document(uid);
-        dataRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Bacaro bacaro = documentSnapshot.toObject(Bacaro.class);
-                //bacari.add(bacaro);
-                //Log.i("click", bacaro.getName() + " " + bacaro.getLat() + " " + bacaro.getLng());
-                //Log.i("click", bacaro.toString());
-            }
-        });
-
-         */
-
-
-/*
-        db.collection("Bacari")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.i("click", document.getData().toString());
-                                Gson gson = new Gson();
-                                Bacaro target = gson.fromJson(document.getData().toString(), Bacaro.class);
-                                bacari.add(target);
-
-                            }
-                        } else {
-                            Log.i("click", "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-        */
-
-        Log.i("click","clickato il bottone, ora loggare i bacari");
-        //Log.i("click", bacari.toString());
-
         for(Bacaro i : bacari) {
-            Log.i("click", i.getName() + " " + i.getLat() + " " + i.getLng() + " " +i.getDescription() + " " + i.getImageUrl());
+            Log.i(TAG, i.getName() + " " + i.getLat() + " " + i.getLng() + " " +i.getDescription() + " " + i.getImageUrl());
         }
-
-
 
     }
 }
