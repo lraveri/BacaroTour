@@ -14,7 +14,7 @@
         android:layout_height="101dp"
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/black"
-        android:onClick="showMap2"
+        android:onClick="showMap"
         android:text="Scopri bacari"
         android:textColor="#FFEB3B"
         android:textSize="20sp"

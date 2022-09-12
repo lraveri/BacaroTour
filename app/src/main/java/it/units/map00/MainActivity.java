@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         if(id == R.id.logoutItem){
 
             Log.i(TAG, "Logout selezionato");
-            // TODO: Logout
+            // Logout
             mAuth.signOut();
             updateUI();
 
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void showMap2(View view) {
+    public void showMap(View view) {
         Log.d("clicked", "clickato il pulsante mostra mappa");
 
         Intent expInt = new Intent(this, MapsActivity.class);
