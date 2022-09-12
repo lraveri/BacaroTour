@@ -133,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-    // TODO: Creare un alert dialog da mostrare in caso di registration failed
+    // Creare un alert dialog da mostrare in caso di registration failed
     private void showDialog(String message, String title, int icon){
 
         new AlertDialog.Builder(this)
@@ -150,7 +150,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void btnRegistratiClick(View view) {
 
-        Log.d("RegisterActivity", "Button Registrati clicked");
         String nome = mNome.getText().toString();
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
@@ -171,7 +170,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void tvLoginClick(View view) {
-        Log.d("RegisterActivity", "TextView Login clicked");
 
         Intent intent2 = new Intent(this, LoginActivity.class);
         finish();

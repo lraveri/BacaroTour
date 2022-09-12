@@ -66,8 +66,6 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setTitle("Ciao, " + mAuth.getCurrentUser().getDisplayName());
 
-
-        // Presentare dati all'utente attraverso un Toast
         Toast.makeText(this,"Utente : "+ extra, Toast.LENGTH_SHORT).show();
 
         db = FirebaseFirestore.getInstance();
@@ -87,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-
         getMenuInflater().inflate(R.menu.layout_menu, menu);
 
         return true;
@@ -100,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(id == R.id.logoutItem){
 
-            Log.i(TAG, "Logout selezionato");
             // Logout
             mAuth.signOut();
             updateUI();
@@ -126,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showMap(View view) {
-        Log.d("clicked", "clickato il pulsante mostra mappa");
 
         Intent expInt = new Intent(this, MapsActivity.class);
         startActivity(expInt);

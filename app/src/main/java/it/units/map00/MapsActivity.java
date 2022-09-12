@@ -184,8 +184,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-
-
         //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
         LatLng center = new LatLng(45.4341668, 12.3343518);
@@ -193,13 +191,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 13));
 
         mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
-
-        //LatLng pleRoma = new LatLng(45.4381979, 12.3161289);
-        //LatLng doSpade = new LatLng(45.4391719, 12.3312473);
-
-        //mMap.addMarker(new MarkerOptions().position(pleRoma).title("Piazzale Roma").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-        //mMap.addMarker(new MarkerOptions().position(doSpade).title("Cantina Do Spade").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-
 
         // metodo showMarker
         for(Bacaro i : bacari) {
@@ -292,42 +283,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void run() {
 
-                /*
-                if(mPolyLinesData.size() > 0){
-                    for(PolylineData polylineData: mPolyLinesData){
-                        polylineData.getPolyline().remove();
-                    }
-                    mPolyLinesData.clear();
-                    mPolyLinesData = new ArrayList<>();
-                }
+                //for(DirectionsRoute route: result.routes)
+                DirectionsRoute route = result.routes[0];
+                Log.d(TAG, "run: leg: " + route.legs[0].toString());
+                List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
 
-                 */
+                List<LatLng> newDecodedPath = new ArrayList<>();
 
-                //for(DirectionsRoute route: result.routes){
-                    DirectionsRoute route = result.routes[0];
-                    Log.d(TAG, "run: leg: " + route.legs[0].toString());
-                    List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
-
-                    List<LatLng> newDecodedPath = new ArrayList<>();
-
-                    // This loops through all the LatLng coordinates of ONE polyline.
-                    for(com.google.maps.model.LatLng latLng: decodedPath){
-
-//                        Log.d(TAG, "run: latlng: " + latLng.toString());
-
+                // This loops through all the LatLng coordinates of ONE polyline.
+                for(com.google.maps.model.LatLng latLng: decodedPath){
                         newDecodedPath.add(new LatLng(
                                 latLng.lat,
                                 latLng.lng
                         ));
-                    //}
 
                     if (polyline != null) {
                         polyline.remove();
                     }
                     polyline = mMap.addPolyline(new PolylineOptions().addAll(newDecodedPath));
                     polyline.setColor(Color.BLUE);
-                    polyline.setClickable(true);
-                    Log.d(TAG,"arrivati");
+                    //polyline.setClickable(true);
                     //mPolyLinesData.add(new PolylineData(polyline, route.legs[0]));
 
                 }

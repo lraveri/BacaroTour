@@ -20,10 +20,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
 
-    // TODO 1: Definire a livello globale le varibili e le costanti
     EditText mNomeUtente;
     EditText mPassword;
-
 
     private FirebaseAuth mAuth;
 
@@ -46,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        // TODO: Se l'utente è loggato andare in MainActivity
+        // Se l'utente è loggato andare in MainActivity
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
