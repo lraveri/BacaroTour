@@ -195,7 +195,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // metodo showMarker
         for(Bacaro i : bacari) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(i.getLat(),i.getLng())).title(i.getName()).snippet(i.getShortDescription()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(i.getLat(),i.getLng()))
+                    .title(i.getName())
+                    .snippet(i.getShortDescription())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
         }
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
