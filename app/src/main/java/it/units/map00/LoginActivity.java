@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
 
-    EditText mNomeUtente;
+    EditText mMail;
     EditText mPassword;
 
     private FirebaseAuth mAuth;
@@ -44,20 +44,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
+
         // Se l'utente è loggato andare in MainActivity
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
-            // Name, email address, and profile photo Url
 
-            String email = user.getEmail();
-
-            Intent intent3 = new Intent(this, MainActivity.class);
-            intent3.putExtra("msg", email);
-            finish();
-
-            startActivity(intent3);
+                Intent intent3 = new Intent(this, MainActivity.class);
+                finish();
+                startActivity(intent3);
 
         }
 
@@ -67,17 +63,17 @@ public class LoginActivity extends AppCompatActivity {
     public void btnLoginClick(View view) {
         Log.d("LoginActivity", "Login Button Click");
 
-        // TODO 2: Collegare le variabili ai Widgets
-        mNomeUtente = (EditText)findViewById(R.id.etRegName);
+        // Collega le variabili ai Widgets
+        mMail = (EditText)findViewById(R.id.etRegMail);
         mPassword = (EditText)findViewById(R.id.etRegPass);
 
-        String nomeUtente = mNomeUtente.getText().toString();
+        String mail = mMail.getText().toString();
         String password = mPassword.getText().toString();
 
-        Log.d("LoginActivity",nomeUtente );
+        Log.d("LoginActivity",mail );
         Log.d("LoginActivity",password );
 
-        if(!(nomeUtente.length()>7)||!(nomeUtente.contains("@"))) {
+        if(!(mail.length()>7)||!(mail.contains("@"))) {
             Toast.makeText(this, "email non valida", Toast.LENGTH_LONG).show();
             return;
         }else if(!(password.length()>3)){
@@ -85,15 +81,15 @@ public class LoginActivity extends AppCompatActivity {
             return;
 
         }else {
-            loginUser(nomeUtente, password);
+            loginUser(mail, password);
         }
 
         /*
-        if(nomeUtente.equals(mUtente) && password.equals(mPass) ){
+        if(mail.equals(mUtente) && password.equals(mPass) ){
 
 
             Intent intent3 = new Intent(this, MainActivity.class);
-            intent3.putExtra("msg", nomeUtente);
+            intent3.putExtra("msg", mail);
 
             startActivity(intent3);
         }else{

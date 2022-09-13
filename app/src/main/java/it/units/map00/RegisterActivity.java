@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
         mEmail = (EditText)findViewById(R.id.etRegEmail);
         mPassword =(EditText)findViewById(R.id.etRegPass);
         mConfermaPassword = (EditText)findViewById(R.id.etRegPassConf);
-        mNome = (EditText)findViewById(R.id.etRegName);
+        mNome = (EditText)findViewById(R.id.etRegMail);
     }
 
     private void createFirebaseUser(String email, String password, final String nome){
@@ -75,29 +75,22 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.i("ChatUPRegistration", "createUserWithEmail:success");
-                            //FirebaseUser user = mAuth.getCurrentUser();
-                            //showDialog("Registrazione effettuata con successo", "Successo", android.R.drawable.ic_dialog_info);
 
-                            // TODO: Caricare nome in Firebase
+                            Log.i("Registration", "createUserWithEmail:success");
+
+                            // Carica nome in Firebase
                             setNome(nome);
 
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             finish();
                             startActivity(intent);
 
-                            //Toast.makeText(RegisterActivity.this, "Authentication success.",
-                            //Toast.LENGTH_SHORT).show();
-
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.i("ChatUPRegistration", "createUserWithEmail:failure", task.getException());
+                            Log.i("Registration", "createUserWithEmail:failure", task.getException());
 
                             // Chiamare l'alert dialog
                             showDialog("Errore nella Registrazione","Errore", android.R.drawable.ic_dialog_alert);
-
-                            //Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -105,9 +98,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-
 
 
     private void setNome(String nome){
@@ -131,8 +121,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-
-
     // Creare un alert dialog da mostrare in caso di registration failed
     private void showDialog(String message, String title, int icon){
 
@@ -144,8 +132,6 @@ public class RegisterActivity extends AppCompatActivity {
                 .show();
 
     }
-
-
 
 
     public void btnRegistratiClick(View view) {
@@ -163,7 +149,6 @@ public class RegisterActivity extends AppCompatActivity {
         else if(!passwordValida(password)){
             Toast.makeText(getApplicationContext(),"Password non Valida", Toast.LENGTH_SHORT).show();
         }else {
-
             createFirebaseUser(email, password, nome);
         }
 

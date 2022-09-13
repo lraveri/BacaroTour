@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Ricevere i dati dell'intent ed estrarli con il metodo getExtras()
-        Bundle b = getIntent().getExtras();
-        String extra = b.getString("msg");
         mAuth = FirebaseAuth.getInstance();
-        setTitle("Ciao, " + mAuth.getCurrentUser().getDisplayName());
 
-        Toast.makeText(this,"Utente : "+ extra, Toast.LENGTH_SHORT).show();
+        if(mAuth.getCurrentUser().getDisplayName() == null) {
+            setTitle("Benvenuto!");
+        } else {
+            setTitle("Ciao " + mAuth.getCurrentUser().getDisplayName() + "!");
+        }
 
         db = FirebaseFirestore.getInstance();
 
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
 
         getMenuInflater().inflate(R.menu.layout_menu, menu);
 
