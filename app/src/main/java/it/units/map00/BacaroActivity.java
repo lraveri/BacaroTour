@@ -68,7 +68,7 @@ public class BacaroActivity extends AppCompatActivity {
 
     public void showContent(Bacaro bacaro) {
         rImage = findViewById(R.id.rImage);
-        Picasso.get().load(bacaro.getImageUrl()).into(rImage);
+        Picasso.get().load(bacaro.getImageUrl()).resize(1080,565).into(rImage);
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(bacaro.getName());
         tvDescription = findViewById(R.id.tvDescription);
