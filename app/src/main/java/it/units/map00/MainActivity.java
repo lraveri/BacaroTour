@@ -109,11 +109,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(expInt);
     }
 
-    public void showList(View view) {
-
-        for(Bacaro i : bacari) {
-            Log.i(TAG, i.getName() + " " + i.getLat() + " " + i.getLng() + " " +i.getDescription() + " " + i.getImageUrl());
-        }
-
-    }
 }

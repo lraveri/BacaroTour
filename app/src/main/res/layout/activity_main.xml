@@ -10,52 +10,29 @@
 
     <Button
         android:id="@+id/btn2"
-        android:layout_width="189dp"
-        android:layout_height="101dp"
-        android:layout_marginTop="100dp"
-        android:backgroundTint="@color/black"
+        android:layout_width="159dp"
+        android:layout_height="71dp"
+        android:backgroundTint="@color/black_bacaro"
         android:onClick="showMap"
         android:text="Scopri bacari"
-        android:textColor="#FFEB3B"
+        android:textColor="@color/yellow_bacaro"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="328dp"
-        android:layout_height="192dp"
-        android:background="@color/black"
-        android:paddingLeft="30sp"
-        android:paddingTop="70sp"
-        android:rotation="-20"
-        android:text="Bacaro Tour App!"
-        android:textColor="#FFEB3B"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="331dp"
+        android:layout_height="156dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:onClick="showList"
-        android:text="Elenco Bacari"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.599"
+        app:srcCompat="@drawable/logo_bacaro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_error"
+    android:background="@color/red_bacaro"
     tools:context="it.units.map00.RegisterActivity"
     tools:layout_editor_absoluteY="81dp">
 
@@ -19,7 +19,7 @@
         android:layout_marginEnd="24dp"
         android:text="Registrati"
 
-        android:textColor="@android:color/white"
+        android:textColor="@color/white_bacaro"
         android:textSize="40sp"
         android:textStyle="bold" />
 
@@ -31,7 +31,7 @@
         android:layout_alignStart="@+id/textView2"
         android:layout_alignLeft="@+id/textView2"
         android:text="per scoprire nuovi bacari..."
-        android:textColor="@android:color/white"
+        android:textColor="@color/white_bacaro"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -63,7 +63,8 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="Name"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/black_bacaro" />
 
         </LinearLayout>
 
@@ -78,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent" />
+                android:background="@color/yellow_bacaro" />
         </LinearLayout>
 
 
@@ -114,7 +115,8 @@
                 android:background="@android:color/transparent"
                 android:hint="Email"
                 android:inputType="textPersonName"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/black_bacaro" />
         </LinearLayout>
 
 
@@ -166,7 +168,8 @@
                 android:background="@android:color/transparent"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/black_bacaro" />
 
         </LinearLayout>
 
@@ -181,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent" />
+                android:background="@color/yellow_bacaro" />
         </LinearLayout>
 
     </LinearLayout>
@@ -219,7 +222,8 @@
                 android:background="@android:color/transparent"
                 android:hint="Conferma Password"
                 android:inputType="textPassword"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/black_bacaro" />
 
         </LinearLayout>
 
@@ -234,7 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent" />
+                android:background="@color/yellow_bacaro" />
         </LinearLayout>
 
     </LinearLayout>
@@ -247,10 +251,11 @@
         android:layout_below="@+id/lay_passwordConfirm"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/black_bacaro"
         android:onClick="btnRegistratiClick"
         android:text="REGISTRATI"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/grey_dark"
+        android:textColor="@color/white_bacaro"
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="312dp" />
 
@@ -265,6 +270,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:text="Già Registrato ?"
+        android:textColor="@color/black_bacaro"
         tools:layout_editor_absoluteX="81dp"
         tools:layout_editor_absoluteY="387dp" />
 
@@ -280,7 +286,7 @@
         android:clickable="true"
         android:onClick="tvLoginClick"
         android:text="Login"
-        android:textColor="@color/colorAccentDark"
+        android:textColor="@color/yellow_bacaro"
         android:textSize="18sp"
         android:textStyle="bold" />
 
