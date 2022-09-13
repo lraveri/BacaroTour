@@ -10,25 +10,39 @@
 
     <ImageView
         android:id="@+id/imageView"
+        android:layout_width="362dp"
+        android:layout_height="238dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="27dp"
+        app:srcCompat="@drawable/logo_bacaro" />
+
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="331dp"
         android:layout_height="156dp"
-        app:srcCompat="@drawable/logo_bacaro"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="40dp"
+        app:srcCompat="@drawable/glasses" />
 
     <Button
         android:id="@+id/btn2"
-        android:layout_width="159dp"
-        android:layout_height="71dp"
+        android:layout_width="285dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="60dp"
         android:backgroundTint="@color/black_bacaro"
-        android:layout_below="@+id/imageView"
         android:onClick="showMap"
         android:text="Scopri bacari"
-        android:textColor="@color/yellow_bacaro"
+        android:textColor="@color/white_bacaro"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        />
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
