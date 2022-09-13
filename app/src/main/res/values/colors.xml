@@ -20,4 +20,11 @@
     <color name="darkGrey">#a6a6a6 </color>
 
     <color name="grey_dark">#37474F</color>
+
+    <color name = "yellow_bacaro">#E7AC24</color>
+    <color name = "red_bacaro">#B00020</color>
+    <color name = "black_bacaro">#232323</color>
+    <color name = "white_bacaro">#fffff0</color>
+
+
 </resources>
