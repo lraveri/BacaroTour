@@ -34,7 +34,7 @@ public class BacaroActivity extends AppCompatActivity {
     ImageView rImage;
     TextView tvTitle;
     TextView tvDescription;
-    RatingBar tvFood;
+    RatingBar avgRatingBar;
 
     Bacaro bacaro;
 
@@ -73,8 +73,8 @@ public class BacaroActivity extends AppCompatActivity {
         tvTitle.setText(bacaro.getName());
         tvDescription = findViewById(R.id.tvDescription);
         tvDescription.setText(bacaro.getDescription());
-        tvFood = findViewById(R.id.tvFood);
-        tvFood.setRating((float) bacaro.getAverageRate());
+        avgRatingBar = findViewById(R.id.avgRatingBar);
+        avgRatingBar.setRating((float) bacaro.getAverageRate());
 
     }
 }
