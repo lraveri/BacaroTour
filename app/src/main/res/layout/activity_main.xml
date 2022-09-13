@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/design_default_color_error"
-    tools:context=".MainActivity">
+    android:background="@color/red_bacaro"
+    tools:context="it.units.map00.MainActivity"
+    tools:layout_editor_absoluteY="81dp">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="331dp"
+        android:layout_height="156dp"
+        app:srcCompat="@drawable/logo_bacaro"
+        android:layout_centerHorizontal="true"
+        />
 
     <Button
         android:id="@+id/btn2"
         android:layout_width="159dp"
         android:layout_height="71dp"
         android:backgroundTint="@color/black_bacaro"
+        android:layout_below="@+id/imageView"
         android:onClick="showMap"
         android:text="Scopri bacari"
         android:textColor="@color/yellow_bacaro"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73" />
+        android:layout_centerHorizontal="true"
+        />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="331dp"
-        android:layout_height="156dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.599"
-        app:srcCompat="@drawable/logo_bacaro" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
