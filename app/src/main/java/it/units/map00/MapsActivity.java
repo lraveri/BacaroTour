@@ -46,7 +46,7 @@ import java.util.List;
 
 import it.units.map00.adapters.CustomInfoWindowAdapter;
 import it.units.map00.databinding.ActivityMapsBinding;
-import it.units.map00.model.Bacaro;
+import it.units.map00.entities.Bacaro;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -184,6 +184,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
+
         //mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
         LatLng center = new LatLng(45.4341668, 12.3343518);
@@ -283,26 +284,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void run() {
 
-                //for(DirectionsRoute route: result.routes)
-                DirectionsRoute route = result.routes[0];
-                Log.d(TAG, "run: leg: " + route.legs[0].toString());
-                List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
+                //for(DirectionsRoute route: result.routes){
+                    DirectionsRoute route = result.routes[0];
+                    Log.d(TAG, "run: leg: " + route.legs[0].toString());
+                    List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
 
-                List<LatLng> newDecodedPath = new ArrayList<>();
+                    List<LatLng> newDecodedPath = new ArrayList<>();
 
-                // This loops through all the LatLng coordinates of ONE polyline.
-                for(com.google.maps.model.LatLng latLng: decodedPath){
+                    // This loops through all the LatLng coordinates of ONE polyline.
+                    for(com.google.maps.model.LatLng latLng: decodedPath){
+
+//                        Log.d(TAG, "run: latlng: " + latLng.toString());
+
                         newDecodedPath.add(new LatLng(
                                 latLng.lat,
                                 latLng.lng
                         ));
+                    //}
 
                     if (polyline != null) {
                         polyline.remove();
                     }
                     polyline = mMap.addPolyline(new PolylineOptions().addAll(newDecodedPath));
                     polyline.setColor(Color.BLUE);
-                    //polyline.setClickable(true);
+                    polyline.setClickable(true);
+                    Log.d(TAG,"arrivati");
                     //mPolyLinesData.add(new PolylineData(polyline, route.legs[0]));
 
                 }

@@ -1,4 +1,4 @@
-package it.units.map00.model;
+package it.units.map00.entities;
 
 public class Bacaro {
 
