@@ -44,7 +44,7 @@
         android:hint="Email"
         android:maxLines="1"
         android:singleLine="true"
-        android:textColor="@color/black_bacaro"
+        android:textColor="@color/white_bacaro"
         app:layout_constraintLeft_toRightOf="@+id/imageView_name"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
