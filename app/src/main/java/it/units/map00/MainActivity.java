@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
             setTitle("Ciao " + mAuth.getCurrentUser().getDisplayName() + "!");
         }
 
+        /*
+
         db = FirebaseFirestore.getInstance();
 
         CollectionReference myRef = db.collection("Bacari");
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+         */
 
     }
 
