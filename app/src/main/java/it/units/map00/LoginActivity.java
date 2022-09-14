@@ -61,41 +61,23 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void btnLoginClick(View view) {
-        Log.d("LoginActivity", "Login Button Click");
 
-        // Collega le variabili ai Widgets
         mMail = (EditText)findViewById(R.id.etRegMail);
         mPassword = (EditText)findViewById(R.id.etRegPass);
 
         String mail = mMail.getText().toString();
         String password = mPassword.getText().toString();
 
-        Log.d("LoginActivity",mail );
-        Log.d("LoginActivity",password );
-
         if(!(mail.length()>7)||!(mail.contains("@"))) {
             Toast.makeText(this, "email non valida", Toast.LENGTH_LONG).show();
             return;
-        }else if(!(password.length()>3)){
-            Toast.makeText(this, "password non valida", Toast.LENGTH_LONG).show();
+        }else if(!(password.length()>5)){
+            Toast.makeText(this, "password troppo corta", Toast.LENGTH_LONG).show();
             return;
 
         }else {
             loginUser(mail, password);
         }
-
-        /*
-        if(mail.equals(mUtente) && password.equals(mPass) ){
-
-
-            Intent intent3 = new Intent(this, MainActivity.class);
-            intent3.putExtra("msg", mail);
-
-            startActivity(intent3);
-        }else{
-            Toast.makeText(this, "Nome utente o Password non corretti", Toast.LENGTH_SHORT).show();
-        }
-        */
 
 
 
@@ -117,17 +99,13 @@ public class LoginActivity extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            //updateUI(null);
                         }
 
-                        // ...
                     }
                 });
     }
 
     public void tvRegistratiClick(View view) {
-
-        Log.d("LoginActivity", "Registrati Click");
 
         Intent intent1 = new Intent(this, RegisterActivity.class);
         finish();

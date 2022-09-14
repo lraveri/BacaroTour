@@ -40,9 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        //FirebaseUser currentUser = mAuth.getCurrentUser();
-        //Toast.makeText(this,"Utente già loggato", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -52,10 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         initUI();
 
-
-
         mAuth = FirebaseAuth.getInstance();
-
 
     }
 
@@ -67,8 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void createFirebaseUser(String email, String password, final String nome){
-
-
 
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -94,7 +87,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                         }
 
-                        // ...
                     }
                 });
     }
@@ -175,6 +167,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean passwordValida(String password){
         String confermaPassword = mConfermaPassword.getText().toString();
-        return confermaPassword.equals(password) && password.length()>2;
+        return confermaPassword.equals(password) && password.length()>5;
     }
 }
