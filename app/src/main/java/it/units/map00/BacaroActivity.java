@@ -35,6 +35,11 @@ public class BacaroActivity extends AppCompatActivity {
     TextView tvTitle;
     TextView tvDescription;
     RatingBar avgRatingBar;
+    RatingBar foodRatingBar;
+    RatingBar wineRatingBar;
+    RatingBar priceRatingBar;
+    RatingBar serviceRatingBar;
+    RatingBar locationRatingBar;
 
     Bacaro bacaro;
 
@@ -73,8 +78,19 @@ public class BacaroActivity extends AppCompatActivity {
         tvTitle.setText(bacaro.getName());
         tvDescription = findViewById(R.id.tvDescription);
         tvDescription.setText(bacaro.getDescription());
-        avgRatingBar = findViewById(R.id.avgRatingBar);
-        avgRatingBar.setRating((float) bacaro.getAverageRate());
+        //avgRatingBar = findViewById(R.id.avgRatingBar);
+        //avgRatingBar.setRating((float) bacaro.getAverageRate());
+        foodRatingBar = findViewById(R.id.rbFood);
+        foodRatingBar.setRating((float) bacaro.getFood());
+        wineRatingBar = findViewById(R.id.rbWine);
+        wineRatingBar.setRating((float) bacaro.getWine());
+        priceRatingBar = findViewById(R.id.rbPrice);
+        priceRatingBar.setRating((float) bacaro.getPrice());
+        locationRatingBar = findViewById(R.id.rbLocation);
+        locationRatingBar.setRating((float) bacaro.getLocation());
+        serviceRatingBar = findViewById(R.id.rbService);
+        serviceRatingBar.setRating((float) bacaro.getService());
+
 
     }
 }

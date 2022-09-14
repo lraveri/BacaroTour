@@ -27,27 +27,175 @@
         android:layout_centerHorizontal="true"
         />
 
-    <RatingBar
-        android:id="@+id/avgRatingBar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_margin="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitle"
-        android:numStars="5"
-        android:progressTint="@color/yellow_bacaro"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
-        android:layout_centerHorizontal="true"
-        />
-
     <TextView
         android:id="@+id/tvDescription"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/avgRatingBar"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="10dp"
         android:textColor="@color/white_bacaro"
         android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/tvRecensioni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/almendra"
+        android:text="Le Nostre Recensioni"
+        android:textColor="@color/white_bacaro"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/tvRecensioni"
+        android:background="@color/red_bacaro"
+        tools:context="it.units.map00.BacaroActivity"
+        tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/tvFood"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white_bacaro"
+        android:textSize="20sp"
+        android:text="Cicheti"
+        android:layout_alignParentLeft="true"
+
+        />
+
+    <RatingBar
+        android:id="@+id/rbFood"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:progressTint="@color/yellow_bacaro"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/tvWine"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFood"
+        android:textColor="@color/white_bacaro"
+        android:textSize="20sp"
+        android:text="Vino"
+        android:layout_alignParentLeft="true"
+
+        />
+
+    <RatingBar
+        android:id="@+id/rbWine"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFood"
+        android:numStars="5"
+        android:progressTint="@color/yellow_bacaro"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvWine"
+        android:textColor="@color/white_bacaro"
+        android:textSize="20sp"
+        android:text="Prezzo"
+        android:layout_alignParentLeft="true"
+
+        />
+
+    <RatingBar
+        android:id="@+id/rbPrice"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvWine"
+        android:numStars="5"
+        android:progressTint="@color/yellow_bacaro"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPrice"
+        android:textColor="@color/white_bacaro"
+        android:textSize="20sp"
+        android:text="Location"
+        android:layout_alignParentLeft="true"
+
+        />
+
+    <RatingBar
+        android:id="@+id/rbLocation"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPrice"
+        android:numStars="5"
+        android:progressTint="@color/yellow_bacaro"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:layout_alignParentRight="true"
+        />
+
+    <TextView
+        android:id="@+id/tvService"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLocation"
+        android:textColor="@color/white_bacaro"
+        android:textSize="20sp"
+        android:text="Servizio"
+        android:layout_alignParentLeft="true"
+
+        />
+
+    <RatingBar
+        android:id="@+id/rbService"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvLocation"
+        android:numStars="5"
+        android:progressTint="@color/yellow_bacaro"
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck"
+        android:layout_alignParentRight="true"
+        />
+
+    </RelativeLayout>
 
 </RelativeLayout>
