@@ -49,22 +49,6 @@ public class MainActivity extends AppCompatActivity {
             setTitle("Ciao " + mAuth.getCurrentUser().getDisplayName() + "!");
         }
 
-        /*
-
-        db = FirebaseFirestore.getInstance();
-
-        CollectionReference myRef = db.collection("Bacari");
-
-        myRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
-            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                Log.d(TAG, doc.getData().toString());
-                bacari.add(doc.toObject(Bacaro.class));
-            }
-
-        });
-
-         */
-
     }
 
     @Override
