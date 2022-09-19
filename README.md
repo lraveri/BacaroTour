@@ -14,6 +14,7 @@ Sono implementati il login e la registrazione di un nuovo utente.
 
 Alcuni degli strumenti utilizzati:    
 Google Maps SDK     
+Google Directions API      
 Firebase Authentication      
 Firebase Cloud Firestore Database      
 Firebase Cloud Storage   
