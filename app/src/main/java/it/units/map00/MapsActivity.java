@@ -316,7 +316,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     polyline = mMap.addPolyline(new PolylineOptions().addAll(newDecodedPath));
                     polyline.setColor(Color.BLUE);
                     polyline.setClickable(true);
-                    Log.d(TAG,"arrivati");
                     //mPolyLinesData.add(new PolylineData(polyline, route.legs[0]));
 
                 }
