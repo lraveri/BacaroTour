@@ -9,6 +9,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -153,12 +154,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else {
 
                 // Abbiamo i permessi
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
             }
         } else {
             // Se SDK < 23
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
 
 
@@ -205,9 +206,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return false;
         });
 
+        ApplicationInfo ai = null;
+        try {
+            ai = getPackageManager().getApplicationInfo(getPackageName(), PackageManager.GET_META_DATA);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        Bundle bundle = ai.metaData;
+        String myApiKey = bundle.getString("com.google.android.geo.API_KEY");
+
         if (mGeoApiContext == null) {
             mGeoApiContext = new GeoApiContext.Builder()
-                    .apiKey("AIzaSyC8xOhOU3UReDVfMT0tqhxJfhkMpqF-uBQ")
+                    .apiKey(myApiKey)
                     .build();
         }
 
