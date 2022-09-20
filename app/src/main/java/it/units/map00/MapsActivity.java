@@ -20,6 +20,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -30,6 +32,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -65,40 +68,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private static final String TAG = "MapsActivity";
 
-    LatLng posizioneUtente;
+    //LatLng posizioneUtente;
 
     private static final int REQUEST_CODE = 101;
 
-    /*
+    private FusedLocationProviderClient fusedLocationClient;
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-            }
-        }
-    }
 
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        db = FirebaseFirestore.getInstance();
 
-        CollectionReference myRef = db.collection("Bacari");
-
-        myRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
-            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
-                Log.i("click", doc.getData().toString());
-                bacari.add(doc.toObject(Bacaro.class));
-            }
-
-        });
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -108,18 +91,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        /*
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.i("click", "rotto tutto");
-            return;
-        } else {
-            mMap.setMyLocationEnabled(true);
-        }
 
-         */
     }
 
     /**
@@ -136,6 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        /*
 
         locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 
@@ -143,12 +118,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             public void onLocationChanged(Location location) {
-                //Toast.makeText(MapsActivity.this, location.toString(), Toast.LENGTH_SHORT).show();
 
                 posizioneUtente = new LatLng(location.getLatitude(), location.getLongitude());
 
-                //mMap.addMarker(new MarkerOptions().position(posizioneUtente).title("Tu sei qui"));
-                //mMap.moveCamera(CameraUpdateFactory.newLatLng(posizioneUtente));
             }
 
             @Override
@@ -166,6 +138,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             }
         };
+
+         */
 
         // Se SDK >= 23
         if(Build.VERSION.SDK_INT >= 23) {
@@ -197,15 +171,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapsActivity.this));
 
-        // metodo showMarker
-        for(Bacaro i : bacari) {
-            mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(i.getLat(),i.getLng()))
-                    .title(i.getName())
-                    .snippet(i.getShortDescription())
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+        db = FirebaseFirestore.getInstance();
 
-        }
+        CollectionReference myRef = db.collection("Bacari");
+
+        myRef.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                Bacaro bacaro = doc.toObject(Bacaro.class);
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(bacaro.getLat(),bacaro.getLng()))
+                        .title(bacaro.getName())
+                        .snippet(bacaro.getShortDescription())
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+            }
+
+        });
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
@@ -213,43 +193,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         mMap.setMyLocationEnabled(true);
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+        mMap.setOnInfoWindowClickListener(marker -> {
+            Intent intent = new Intent(MapsActivity.this, BacaroActivity.class);
+            intent.putExtra("name", marker.getTitle());
+            startActivity(intent);
 
-            @Override
-            public void onInfoWindowClick(@NonNull Marker marker) {
-                //marker.hideInfoWindow();
-                Intent intent = new Intent(MapsActivity.this, BacaroActivity.class);
-                intent.putExtra("name", marker.getTitle());
-                startActivity(intent);
-
-            }
         });
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-
-
-            @Override
-            public boolean onMarkerClick(@NonNull Marker marker) {
-                calculateDirection(marker);
-                return false;
-            }
+        mMap.setOnMarkerClickListener(marker -> {
+            calculateDirection(marker);
+            return false;
         });
 
         if (mGeoApiContext == null) {
             mGeoApiContext = new GeoApiContext.Builder()
-                    .apiKey(getString(R.string.google_api_key))
+                    .apiKey("AIzaSyC8xOhOU3UReDVfMT0tqhxJfhkMpqF-uBQ")
                     .build();
         }
 
-        mMap.setOnPolylineClickListener(new GoogleMap.OnPolylineClickListener() {
-            @Override
-            public void onPolylineClick(Polyline polyline) {
-
-            }
-        });
-
     }
 
+    @SuppressLint("MissingPermission")
     private void calculateDirection(Marker marker){
         Log.d(TAG, "calculateDirections: calculating directions.");
 
@@ -258,33 +222,37 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 marker.getPosition().longitude
         );
 
-        com.google.maps.model.LatLng origin = new com.google.maps.model.LatLng(
-                posizioneUtente.latitude,
-                posizioneUtente.longitude
-        );
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            // Logic to handle location object
+                            com.google.maps.model.LatLng origin = new com.google.maps.model.LatLng(location.getLatitude(), location.getLongitude());
+                            DirectionsApiRequest directions = new DirectionsApiRequest(mGeoApiContext);
 
-        DirectionsApiRequest directions = new DirectionsApiRequest(mGeoApiContext);
+                            directions.alternatives(true).origin(origin).mode(TravelMode.WALKING);
+                            Log.d(TAG, "calculateDirections: origin: " + origin.toString());
+                            Log.d(TAG, "calculateDirections: destination: " + destination.toString());
+                            directions.destination(destination).setCallback(new PendingResult.Callback<DirectionsResult>() {
+                                @Override
+                                public void onResult(DirectionsResult result) {
+                                    Log.d(TAG, "onResult: routes: " + result.routes[0].toString());
+                                    Log.d(TAG, "onResult: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());
+                                    addPolylinesToMap(result);
+                                }
 
-        directions.alternatives(true);
-        //directions.origin(new Double(posizioneUtente.latitude).toString() + new Double(posizioneUtente.longitude).toString());
-        directions.origin(origin);
-        directions = directions.mode(TravelMode.WALKING);
-        Log.d(TAG, "calculateDirections: origin: " + origin.toString());
-        Log.d(TAG, "calculateDirections: destination: " + destination.toString());
-        directions.destination(destination).setCallback(new PendingResult.Callback<DirectionsResult>() {
-            @Override
-            public void onResult(DirectionsResult result) {
-                Log.d(TAG, "onResult: routes: " + result.routes[0].toString());
-                Log.d(TAG, "onResult: geocodedWayPoints: " + result.geocodedWaypoints[0].toString());
-                addPolylinesToMap(result);
-            }
+                                @Override
+                                public void onFailure(Throwable e) {
+                                    Log.e(TAG, "onFailure: " + e.getMessage() );
 
-            @Override
-            public void onFailure(Throwable e) {
-                Log.e(TAG, "onFailure: " + e.getMessage() );
+                                }
+                            });
+                        }
+                    }
+                });
 
-            }
-        });
     }
 
     private void addPolylinesToMap(final DirectionsResult result){
@@ -292,31 +260,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void run() {
 
-                //for(DirectionsRoute route: result.routes){
+
                     DirectionsRoute route = result.routes[0];
                     Log.d(TAG, "run: leg: " + route.legs[0].toString());
                     List<com.google.maps.model.LatLng> decodedPath = PolylineEncoding.decode(route.overviewPolyline.getEncodedPath());
 
                     List<LatLng> newDecodedPath = new ArrayList<>();
 
-                    // This loops through all the LatLng coordinates of ONE polyline.
                     for(com.google.maps.model.LatLng latLng: decodedPath){
-
-//                        Log.d(TAG, "run: latlng: " + latLng.toString());
 
                         newDecodedPath.add(new LatLng(
                                 latLng.lat,
                                 latLng.lng
                         ));
-                    //}
+
 
                     if (polyline != null) {
                         polyline.remove();
                     }
                     polyline = mMap.addPolyline(new PolylineOptions().addAll(newDecodedPath));
                     polyline.setColor(Color.BLUE);
-                    polyline.setClickable(true);
-                    //mPolyLinesData.add(new PolylineData(polyline, route.legs[0]));
 
                 }
             }

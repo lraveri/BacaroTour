@@ -2,8 +2,6 @@ package it.units.map00.entities;
 
 public class Bacaro {
 
-    private String address;
-    private double averageRate;
     private String description;
     private double food;
     private String imageUrl;
@@ -16,9 +14,7 @@ public class Bacaro {
     private String shortDescription;
     private double wine;
 
-    public Bacaro(String address, double averageRate, String description, double food, String imageUrl, double lat, double lng, double location, String name, double price, double service, String shortDescription, double wine) {
-        this.address = address;
-        this.averageRate = averageRate;
+    public Bacaro(String description, double food, String imageUrl, double lat, double lng, double location, String name, double price, double service, String shortDescription, double wine) {
         this.description = description;
         this.food = food;
         this.imageUrl = imageUrl;
@@ -41,14 +37,6 @@ public class Bacaro {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public double getAverageRate() {
-        return averageRate;
-    }
-
-    public void setAverageRate(double averageRate) {
-        this.averageRate = averageRate;
     }
 
     public String getDescription() {
@@ -81,14 +69,6 @@ public class Bacaro {
 
     public void setLng(double lng) {
         this.lng = lng;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getShortDescription() {
@@ -137,5 +117,12 @@ public class Bacaro {
 
     public void setService(double service) {
         this.service = service;
+    }
+
+    @Override
+    public String toString() {
+        return "Bacaro{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

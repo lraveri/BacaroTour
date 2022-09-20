@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.google.maps:google-maps-services:2.1.0'
     implementation 'org.slf4j:slf4j-simple:1.7.25'
     implementation 'com.google.firebase:firebase-storage:20.0.1'
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.squareup.picasso:picasso:2.8'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
