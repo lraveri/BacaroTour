@@ -48,7 +48,7 @@ import com.google.maps.model.TravelMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.units.map00.adapters.CustomInfoWindowAdapter;
+
 import it.units.map00.databinding.ActivityMapsBinding;
 import it.units.map00.entities.Bacaro;
 
@@ -57,13 +57,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
 
-    ArrayList<Bacaro> bacari = new ArrayList<>();
-    FirebaseFirestore db;
+    //ArrayList<Bacaro> bacari = new ArrayList<>();
+    private FirebaseFirestore db;
 
-    LocationManager locationManager;
-    LocationListener locationListener;
+    //LocationManager locationManager;
+    //LocationListener locationListener;
 
-    Polyline polyline = null;
+    private Polyline polyline = null;
 
     private GeoApiContext mGeoApiContext = null;
 
