@@ -24,18 +24,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
 
-    // Costanti
-    static final String CHAT_PREFS = "ChatPrefs";
-    static final String NOME_KEY = "username";
-
-    EditText mConfermaPassword;
-    EditText mEmail;
-    EditText mPassword;
-    EditText mNome;
-
+    private EditText mConfermaPassword;
+    private EditText mEmail;
+    private EditText mPassword;
+    private EditText mNome;
 
     private FirebaseAuth mAuth;
-
 
     @Override
     public void onStart() {
@@ -55,10 +49,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        mEmail = (EditText)findViewById(R.id.etRegEmail);
-        mPassword =(EditText)findViewById(R.id.etRegPass);
-        mConfermaPassword = (EditText)findViewById(R.id.etRegPassConf);
-        mNome = (EditText)findViewById(R.id.etRegMail);
+        mEmail = findViewById(R.id.etRegEmail);
+        mPassword = findViewById(R.id.etRegPass);
+        mConfermaPassword = findViewById(R.id.etRegPassConf);
+        mNome = findViewById(R.id.etRegMail);
     }
 
     private void createFirebaseUser(String email, String password, final String nome){
@@ -71,7 +65,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Log.i("Registration", "createUserWithEmail:success");
 
-                            // Carica nome in Firebase
                             setNome(nome);
 
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
@@ -79,10 +72,8 @@ public class RegisterActivity extends AppCompatActivity {
                             startActivity(intent);
 
                         } else {
-                            // If sign in fails, display a message to the user.
                             Log.i("Registration", "createUserWithEmail:failure", task.getException());
 
-                            // Chiamare l'alert dialog
                             showDialog("Errore nella Registrazione","Errore", android.R.drawable.ic_dialog_alert);
 
                         }
@@ -112,8 +103,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-
-    // Creare un alert dialog da mostrare in caso di registration failed
     private void showDialog(String message, String title, int icon){
 
         new AlertDialog.Builder(this)
@@ -125,14 +114,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-
     public void btnRegistratiClick(View view) {
 
         String nome = mNome.getText().toString();
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
 
-        // Validazioni Dati
         if(!nomeValido(nome) )
             Toast.makeText(getApplicationContext(),"Nome non Valido", Toast.LENGTH_SHORT).show();
         else if(!emailValida(email)){

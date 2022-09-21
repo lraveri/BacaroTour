@@ -14,7 +14,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
 import it.units.map00.entities.Bacaro;
@@ -23,25 +22,20 @@ public class BacaroActivity extends AppCompatActivity {
 
     private static final String TAG = "BacaroActivity";
 
-    String name;
-    double lat;
-    double lng;
+    private String name;
 
-    FirebaseStorage storage;
+    private FirebaseFirestore db;
 
-    FirebaseFirestore db;
+    private ImageView rImage;
+    private TextView tvTitle;
+    private TextView tvDescription;
+    private RatingBar foodRatingBar;
+    private RatingBar wineRatingBar;
+    private RatingBar priceRatingBar;
+    private RatingBar serviceRatingBar;
+    private RatingBar locationRatingBar;
 
-    ImageView rImage;
-    TextView tvTitle;
-    TextView tvDescription;
-    RatingBar avgRatingBar;
-    RatingBar foodRatingBar;
-    RatingBar wineRatingBar;
-    RatingBar priceRatingBar;
-    RatingBar serviceRatingBar;
-    RatingBar locationRatingBar;
-
-    Bacaro bacaro;
+    private Bacaro bacaro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,22 +66,28 @@ public class BacaroActivity extends AppCompatActivity {
     }
 
     public void showContent(Bacaro bacaro) {
+
         rImage = findViewById(R.id.rImage);
         Picasso.get().load(bacaro.getImageUrl()).resize(1080,565).into(rImage);
+
         tvTitle = findViewById(R.id.tvTitle);
         tvTitle.setText(bacaro.getName());
+
         tvDescription = findViewById(R.id.tvDescription);
         tvDescription.setText(bacaro.getDescription());
-        //avgRatingBar = findViewById(R.id.avgRatingBar);
-        //avgRatingBar.setRating((float) bacaro.getAverageRate());
+
         foodRatingBar = findViewById(R.id.rbFood);
         foodRatingBar.setRating((float) bacaro.getFood());
+
         wineRatingBar = findViewById(R.id.rbWine);
         wineRatingBar.setRating((float) bacaro.getWine());
+
         priceRatingBar = findViewById(R.id.rbPrice);
         priceRatingBar.setRating((float) bacaro.getPrice());
+
         locationRatingBar = findViewById(R.id.rbLocation);
         locationRatingBar.setRating((float) bacaro.getLocation());
+
         serviceRatingBar = findViewById(R.id.rbService);
         serviceRatingBar.setRating((float) bacaro.getService());
 

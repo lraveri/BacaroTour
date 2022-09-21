@@ -119,10 +119,4 @@ public class Bacaro {
         this.service = service;
     }
 
-    @Override
-    public String toString() {
-        return "Bacaro{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 }

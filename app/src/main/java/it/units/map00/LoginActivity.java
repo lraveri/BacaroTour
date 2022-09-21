@@ -20,11 +20,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
 
-    EditText mMail;
-    EditText mPassword;
+    private EditText mMail;
+    private EditText mPassword;
 
     private FirebaseAuth mAuth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +44,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
 
-        // Se l'utente è loggato andare in MainActivity
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         if (user != null) {
@@ -62,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void btnLoginClick(View view) {
 
-        mMail = (EditText)findViewById(R.id.etRegMail);
-        mPassword = (EditText)findViewById(R.id.etRegPass);
+        mMail = findViewById(R.id.etRegMail);
+        mPassword = findViewById(R.id.etRegPass);
 
         String mail = mMail.getText().toString();
         String password = mPassword.getText().toString();
@@ -78,8 +75,6 @@ public class LoginActivity extends AppCompatActivity {
         }else {
             loginUser(mail, password);
         }
-
-
 
     }
 

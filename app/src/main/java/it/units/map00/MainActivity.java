@@ -1,8 +1,11 @@
 package it.units.map00;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -24,10 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private FirebaseAuth mAuth;
-    FirebaseFirestore db;
-    ArrayList<Bacaro> bacari = new ArrayList<>();
-
-
+    private static final int REQUEST_CODE = 101;
 
     @Override
     protected void onStart() {
@@ -49,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
             setTitle("Ciao " + mAuth.getCurrentUser().getDisplayName() + "!");
         }
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+            return;
+        }
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
 
         getMenuInflater().inflate(R.menu.layout_menu, menu);
 
@@ -67,13 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(id == R.id.logoutItem){
 
-            // Logout
             mAuth.signOut();
             updateUI();
 
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }
