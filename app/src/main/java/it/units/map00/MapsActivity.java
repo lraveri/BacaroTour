@@ -138,9 +138,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        // Got last known location. In some rare situations this can be null.
+
                         if (location != null) {
-                            // Logic to handle location object
+
                             com.google.maps.model.LatLng origin = new com.google.maps.model.LatLng(location.getLatitude(), location.getLongitude());
                             DirectionsApiRequest directions = new DirectionsApiRequest(mGeoApiContext);
 
@@ -171,7 +171,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-
 
                     DirectionsRoute route = result.routes[0];
                     Log.d(TAG, "run: leg: " + route.legs[0].toString());

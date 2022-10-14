@@ -24,10 +24,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
 
-    private EditText mConfermaPassword;
+    private EditText mConfirmPassword;
     private EditText mEmail;
     private EditText mPassword;
-    private EditText mNome;
+    private EditText mName;
 
     private FirebaseAuth mAuth;
 
@@ -51,8 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
     private void initUI() {
         mEmail = findViewById(R.id.etRegEmail);
         mPassword = findViewById(R.id.etRegPass);
-        mConfermaPassword = findViewById(R.id.etRegPassConf);
-        mNome = findViewById(R.id.etRegMail);
+        mConfirmPassword = findViewById(R.id.etRegPassConf);
+        mName = findViewById(R.id.etRegMail);
     }
 
     private void createFirebaseUser(String email, String password, final String nome){
@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             Log.i("Registration", "createUserWithEmail:success");
 
-                            setNome(nome);
+                            setName(nome);
 
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             finish();
@@ -83,11 +83,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void setNome(String nome){
+    private void setName(String name){
         FirebaseUser user = mAuth.getCurrentUser();
 
         UserProfileChangeRequest changeRequest = new UserProfileChangeRequest.Builder()
-                .setDisplayName(nome)
+                .setDisplayName(name)
                 .build();
 
         user.updateProfile(changeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -116,19 +116,19 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void btnRegistratiClick(View view) {
 
-        String nome = mNome.getText().toString();
+        String name = mName.getText().toString();
         String email = mEmail.getText().toString();
         String password = mPassword.getText().toString();
 
-        if(!nomeValido(nome) )
+        if(!nameValid(name) )
             Toast.makeText(getApplicationContext(),"Nome non Valido", Toast.LENGTH_SHORT).show();
-        else if(!emailValida(email)){
+        else if(!emailValid(email)){
             Toast.makeText(getApplicationContext(),"Email non Valida", Toast.LENGTH_SHORT).show();
         }
-        else if(!passwordValida(password)){
+        else if(!passwordValid(password)){
             Toast.makeText(getApplicationContext(),"Password non Valida", Toast.LENGTH_SHORT).show();
         }else {
-            createFirebaseUser(email, password, nome);
+            createFirebaseUser(email, password, name);
         }
 
     }
@@ -141,19 +141,19 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private boolean nomeValido(String nome){
-        if(nome.length()>3)
+    private boolean nameValid(String name){
+        if(name.length()>3)
             return true;
         else
             return false;
     }
 
-    private boolean emailValida(String email){
+    private boolean emailValid(String email){
         return email.contains("@");
     }
 
-    private boolean passwordValida(String password){
-        String confermaPassword = mConfermaPassword.getText().toString();
-        return confermaPassword.equals(password) && password.length()>5;
+    private boolean passwordValid(String password){
+        String confirmPassword = mConfirmPassword.getText().toString();
+        return confirmPassword.equals(password) && password.length()>5;
     }
 }
